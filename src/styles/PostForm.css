@@ -1,0 +1,45 @@
+/* src/components/PostForm.css */
+.post-form {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border: 1px solid #ccc;
+  }
+  
+  .post-form input, .post-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+  }
+  
+  .post-form button {
+    background-color: #0095f6;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  
+  .post-form {
+    margin: 20px 0;
+  }
+  
+  /* .post-form input, .post-form textarea {
+    display: block;
+    margin: 10px 0;
+  }
+  
+  .post-image {
+    width: 100%;
+    max-width: 500px;
+  }
+  
+  .post-list {
+    margin-top: 20px;
+  }
+  
+  .preview-post img {
+    width: 100%;
+    max-width: 500px;
+    margin-bottom: 10px;
+  } */
+  
