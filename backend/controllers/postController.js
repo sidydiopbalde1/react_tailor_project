@@ -1,6 +1,33 @@
 const mongoose = require('mongoose');  
 const Post = require('../models/post');
+
+
 const isValidObjectId = mongoose.Types.ObjectId.isValid;
+const { addPost, getPosts } = require('../models/postModel');
+
+// Fonction pour ajouter un nouveau post via une requête POST
+const handleAddPost = async (req, res) => {
+  const { title, content, photo,user_id } = req.body;
+  try {
+    const post = await addPost(title, content, photo,user_id);  // Utiliser la fonction du modèle
+    res.status(201).json(post);  // Envoyer une réponse avec le post ajouté
+  } catch (err) {
+    res.status(500).json({ error: 'Erreur lors de l\'ajout du post' });
+  }
+};
+
+// Fonction pour récupérer tous les posts via une requête GET
+const handleGetPosts = async (req, res) => {
+  try {
+    const posts = await getPosts();  // Utiliser la fonction du modèle
+    res.status(200).json(posts);
+  } catch (err) {
+    res.status(500).json({ error: 'Erreur lors de la récupération des posts' });
+  }
+};
+
+
+//MONGODB 
 
 exports.getAllPosts = async (req, res) => {
   try {
@@ -79,13 +106,4 @@ exports.deletePost = async (req, res) => {
 
 
 
-
-function ScrollTracker() {
-    const scrollPosition = useScrollPosition();
-  
-    return (
-      <div>
-        <p>Position du défilement : {scrollPosition}px</p>
-      </div>
-    );
-  }
+module.exports = { handleAddPost, handleGetPosts };

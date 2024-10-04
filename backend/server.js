@@ -1,20 +1,23 @@
+
+
 const express = require('express');
-const cors = require('cors');  // Ajouter cette ligne
-const connectToMongoDB = require('./db');
 const postRoutes = require('./routes/postRoutes');
+const { connectToPostgres } = require('../database/postgres ');
 
+// Créer l'application Express
 const app = express();
-const PORT = 5000;
 
-// Activer CORS pour toutes les requêtes
-app.use(cors());
-
+// Middleware pour parser le JSON
 app.use(express.json());
 
-connectToMongoDB();
-
+// Routes pour les posts
 app.use('/api', postRoutes);
 
+// Démarrer la connexion PostgreSQL
+connectToPostgres();
+
+// Démarrer le serveur
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+  console.log(`Le serveur tourne sur le port ${PORT}`);
 });
